@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Lib\DTOs\UserCredentialDto;
+use App\Lib\Interfaces\Services\AuthServiceInterface;
+use App\Lib\Services\AuthService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +16,12 @@ use Inertia\Response;
 
 class AuthenticatedSessionController extends Controller
 {
+    private AuthServiceInterface $authService;
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
     /**
      * Show the login page.
      */

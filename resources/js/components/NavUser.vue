@@ -10,6 +10,8 @@ import UserMenuContent from './UserMenuContent.vue';
 const page = usePage<SharedData>();
 const user = page.props.auth.user as User;
 const { isMobile, state } = useSidebar();
+
+console.log("User", user)
 </script>
 
 <template>

@@ -37,7 +37,7 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'email',
-        'password',
+        // 'password',
         'user_role_id',
         'course_id',
         'acc_status_id',
