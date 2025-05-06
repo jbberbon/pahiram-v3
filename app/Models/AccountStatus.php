@@ -2,17 +2,22 @@
 
 namespace App\Models;
 
-use App\Traits\Uuids;
+use App\Traits\UseUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AccountStatus extends Model
 {
-    use HasFactory;
+    use HasFactory, UseUuid;
 
     protected $fillable = [
-        'acc_status',
+        'status',
         'description',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
     ];
 
     public static function getStatusById($id)

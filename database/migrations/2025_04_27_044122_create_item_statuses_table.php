@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('account_statuses', function (Blueprint $table) {
+        Schema::create('item_statuses', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('acc_status')->unique();
+            $table->string('item_status')->unique();
             $table->string('description')->nullable();
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('account_statuses');
+        Schema::dropIfExists('item_statuses');
     }
 };

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\UseUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,21 +12,7 @@ use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-
-    public $incrementing = false; // <- disables auto-increment
-    protected $keyType = 'string'; // <- tells Laravel the key is a string
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = Str::uuid();
-            }
-        });
-    }
+    use HasFactory, Notifiable, UseUuid;
 
     /**
      * The attributes that are mass assignable.
@@ -37,14 +24,12 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'email',
-        // 'password',
-        'user_role_id',
         'course_id',
         'acc_status_id',
         'department_id'
     ];
 
-    
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -52,7 +37,10 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $hidden = [
-        'password',
+        'id',
+        'created_at',
+        'updated_at',
+        'email_verified_at',
         'remember_token',
     ];
 
@@ -65,9 +53,15 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
         ];
     }
+
+    // Relationships
+    public function userRole()
+    {
+        return $this->hasOne(UserRole::class);
+    }
+
 
     // Methods
     public function getUserRoleId()
@@ -86,14 +80,14 @@ class User extends Authenticatable
         return $accountStatus ? $accountStatus->acc_status : null;
     }
 
-    public static function getUserIdBasedOnApcId($apcId)
+    public function getUserIdBasedOnApcId($apcId)
     {
         $user = self::where('apc_id', $apcId)->first();
 
         return $user ? $user->id : null;
     }
 
-    public static function getNameBasedOnId($userId)
+    public function getNameBasedOnId($userId)
     {
         $user = self::where('id', $userId)->first();
 

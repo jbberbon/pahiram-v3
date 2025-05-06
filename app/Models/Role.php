@@ -2,30 +2,36 @@
 
 namespace App\Models;
 
-use App\Traits\Uuids;
+use App\Traits\UseUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Str;
 
 class Role extends Model
 {
-    use HasFactory;
+    use HasFactory, UseUuid;
 
     protected $fillable = [
-        'role',
-        'role_code',
+        'name',
         'description'
+    ];
+
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at'
     ];
 
     public static function getIdByRole($role)
     {
         $retrievedRole = self::where('role', $role)->first();
 
-        return $retrievedRole ? $retrievedRole->id : null;
+        return $retrievedRole?->id;
     }
     public static function getRoleById($id)
     {
         $retrievedRole = self::where('id', $id)->first();
 
-        return $retrievedRole ? $retrievedRole->role : null;
+        return $retrievedRole?->role;
     }
 }
