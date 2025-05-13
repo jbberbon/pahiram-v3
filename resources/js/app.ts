@@ -1,6 +1,7 @@
 import '../css/app.css';
 
 import { createInertiaApp } from '@inertiajs/vue3';
+import { QueryClient, VueQueryPlugin } from '@tanstack/vue-query';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
@@ -26,9 +27,11 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
+        const queryClient = new QueryClient();
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(VueQueryPlugin, { queryClient })
             .mount(el);
     },
     progress: {

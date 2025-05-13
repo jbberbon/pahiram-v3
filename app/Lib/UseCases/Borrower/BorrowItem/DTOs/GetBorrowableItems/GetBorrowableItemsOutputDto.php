@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Lib\Services\Borrower\DTOs\Output;
+namespace App\Lib\UseCases\Borrower\BorrowItem\DTOs\GetBorrowableItems;
 
 class GetBorrowableItemsOutputDto
 {

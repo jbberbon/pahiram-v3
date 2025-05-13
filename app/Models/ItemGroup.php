@@ -18,16 +18,22 @@ class ItemGroup extends Model
     ];
 
     protected $hidden = [
-        'id',
+        // 'id', // Needs to be shown in the API
         'created_at',
         'updated_at'
     ];
 
     // Relationships
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'item_group_id');
+    }
     public function itemGroupImages()
     {
         return $this->hasMany(ItemGroupImage::class);
     }
+
+
 
     public function getGroupItems()
     {

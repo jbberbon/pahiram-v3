@@ -17,3 +17,6 @@ require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/web/borrower.php';
 require __DIR__ . '/web/lender.php';
+
+require __DIR__ . '/web/psuedo_api/borrower.php';
+require __DIR__ . '/web/psuedo_api/lender.php';

@@ -15,9 +15,9 @@ class BorrowItemIndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'office' => 'nullable|in:' . implode(',', array: DEPARTMENT::LENDING_OFFICES),
+            'department' => 'nullable|in:' . implode(',', array: DEPARTMENT::LENDING_OFFICES),
             'search' => 'nullable|string|max:255',
-            'per-page' => 'nullable|integer|min:1|max:50',
+            'per-page' => 'nullable|integer|min:10|max:50',
             'page' => 'nullable|integer|min:1',
         ];
     }

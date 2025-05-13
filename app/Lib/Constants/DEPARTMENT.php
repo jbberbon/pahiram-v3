@@ -47,9 +47,4 @@ class DEPARTMENT
         self::ESLO,
         self::ITRO
     ];  
-
-    // public static function getOfficeAcronymFromOfficeConstant(string $officeAcronym)
-    // {
-    //     return self::OFFICE_ARRAY[$officeAcronym]['department_acronym'] ?? null;
-    // }
 }

@@ -5,6 +5,6 @@ use Inertia\Inertia;
 
 Route::middleware('auth')->group(function () {
     Route::get('borrow', action: function () {
-        return Inertia::render('borrow/BorrowItems');
+        return Inertia::render('borrow/borrow-items/BorrowItems');
     })->name('borrow');
 });

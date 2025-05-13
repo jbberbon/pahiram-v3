@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Borrower;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BorrowItemController\BorrowItemIndexRequest;
 use App\Lib\Services\Borrower\BorrowItemService;
-use App\Lib\Services\Borrower\DTOs\Input\GetBorrowableItemsInputDto;
+use App\Lib\UseCases\Borrower\BorrowItem\DTOs\GetBorrowableItems\GetBorrowableItemsInputDto;
+use Illuminate\Support\Facades\Log;
 
 class BorrowItemController extends Controller
 {
@@ -26,12 +27,17 @@ class BorrowItemController extends Controller
                 search: $validated['search'] ?? '',
                 perPage: $validated['per-page'] ?? 20,
                 page: $validated['page'] ?? 1,
-                office: $validated['office'] ?? null
+                office: $validated['department'] ?? null
             )
         );
 
         // 02. Check if the service call was successful
         if (!$response->isSuccess) {
+            Log::error('Error fetching borrowable items', [
+                'code' => $response->errorCode,
+                'message' => $response->message,
+                // 'input' => $response->input,
+            ]);
             return response('', $response->errorCode);
         }
 

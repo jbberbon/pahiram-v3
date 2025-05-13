@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Lib\Services\Borrower\DTOs\Input;
-
+namespace App\Lib\UseCases\Borrower\BorrowItem\DTOs\GetBorrowableItems;
 class GetBorrowableItemsInputDto
 {
     public function __construct(
