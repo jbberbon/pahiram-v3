@@ -27,7 +27,7 @@ console.log('borrowItems', data);
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-            <BorrowItemCard v-for="item in data?.data.data" :key="item.apc_item_id" v-bind="item" />
+            <BorrowItemCard v-for="item in data?.data.items" :key="item.id" v-bind="item" />
         </div>
         <!-- <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
             <div class="grid auto-rows-min gap-4 md:grid-cols-4">

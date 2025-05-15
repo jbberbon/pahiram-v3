@@ -1,6 +1,6 @@
 import { Pagination } from "./pagination.types";
 
 export interface ListWithPagination<T> {
-    data: T[];
+    items: T[];
     pagination: Pagination;
 }

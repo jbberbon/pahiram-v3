@@ -1,9 +1,11 @@
 export interface BorrowItem {
+    id: string;
     name: string;
-    apc_item_id: string;
     is_required_supervisor_approval: boolean;
-    department: string
+    department: "BMO" | "ITRO" | "ESLO";
     images: string[];
+    count: number;
+    description: string;
 }
 
 export interface BorrowItemListFilters {

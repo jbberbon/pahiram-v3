@@ -34,6 +34,7 @@ class GetBorrowableItems implements IGetBorrowableItems
                 ->select(
                     'item_groups.id as id',
                     'item_groups.model_name as name',
+                    'item_groups.description as description',
                     'items.is_required_supervisor_approval as is_required_supervisor_approval',
                     'departments.shorthand_name as department',
                     DB::raw(
@@ -45,6 +46,7 @@ class GetBorrowableItems implements IGetBorrowableItems
                 ->groupBy(
                     'item_groups.id',
                     'item_groups.model_name',
+                    'item_groups.description',
                     'items.is_required_supervisor_approval',
                     'departments.shorthand_name',
                 );
@@ -86,7 +88,9 @@ class GetBorrowableItems implements IGetBorrowableItems
                 'id' => $item->id ?? null,
                 'name' => $item->name ?? null,
                 'is_required_supervisor_approval' => $item->is_required_supervisor_approval ?? null,
+                'description' => $item->description ?? null,
                 'department' => $item->department ?? null,
+                'count' => $item->count ?? null,
                 'images' => !empty($item->image_urls)
                     ? json_decode($item->image_urls, true) ?? []
                     : [],
@@ -94,7 +98,7 @@ class GetBorrowableItems implements IGetBorrowableItems
         })->values(); // reset keys just in case
 
         return [
-            'data' => $items,
+            'items' => $items,
             'pagination' => [
                 'current_page' => $itemsPaginator->currentPage(),
                 'per_page' => $itemsPaginator->perPage(),
