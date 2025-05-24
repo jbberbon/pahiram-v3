@@ -41,7 +41,7 @@ class GetBorrowableItems implements IGetBorrowableItems
                         'json_agg(DISTINCT item_group_images.url) 
                         FILTER (WHERE item_group_images.url IS NOT NULL) as image_urls'
                     ),  // Filter NULL values
-                    DB::raw('COUNT(items.id) as count'),
+                    DB::raw('COUNT(items.id) as available_count'),
                 )
                 ->groupBy(
                     'item_groups.id',
@@ -90,7 +90,7 @@ class GetBorrowableItems implements IGetBorrowableItems
                 'is_required_supervisor_approval' => $item->is_required_supervisor_approval ?? null,
                 'description' => $item->description ?? null,
                 'department' => $item->department ?? null,
-                'count' => $item->count ?? null,
+                'available_count' => $item->available_count ?? null,
                 'images' => !empty($item->image_urls)
                     ? json_decode($item->image_urls, true) ?? []
                     : [],

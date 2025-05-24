@@ -5,17 +5,32 @@ export const FAO = 'FAO';
 export const PLO = 'PLO';
 
 export const ALL_DEPARTMENTS = {
-    [BMO]: 'BMO',
-    [ITRO]: 'ITRO',
-    [ESLO]: 'ESLO',
-    [FAO]: 'FAO',
-    [PLO]: 'PLO',
+    [BMO]: {
+        name: 'BMO',
+        fullName: 'Building Management Office',
+    },
+    [ITRO]: {
+        name: 'ITRO',
+        fullName: 'Information and Technology Resource Office',
+    },
+    [ESLO]: {
+        name: 'ESLO',
+        fullName: 'Engineering, Science and Laboratory Office',
+    },
+    [FAO]: {
+        name: 'FAO',
+        fullName: 'Finance and Accounting Office',
+    },
+    [PLO]: {
+        name: 'PLO',
+        fullName: 'Purchasing and Logistics Office',
+    },
 };
 
 export const DEPARTMENT_COLORS: Record<string, string> = {
-    [BMO]: 'blue-500',
-    [ITRO]: 'green-500',
-    [ESLO]: 'red-500',
-    [FAO]: 'yellow-500',
-    [PLO]: 'purple-500',
+    [BMO]: 'bg-sky-500',
+    [ITRO]: 'bg-teal-500',
+    [ESLO]: 'bg-pink-400',
+    [FAO]: 'bg-fuschia-500',
+    [PLO]: 'bg-indigo-500',
 };

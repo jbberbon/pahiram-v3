@@ -12,7 +12,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <Badge class="cursor-pointer text-white" :class="'bg-' + DEPARTMENT_COLORS[props.department]" variant="outline">
-        <span>{{ props.department }}</span>
+    <Badge class="cursor-pointer text-white" :class="DEPARTMENT_COLORS[props.department] ?? ''" variant="outline">
+        <span>{{ props.department ?? "" }}</span>
     </Badge>
 </template>
