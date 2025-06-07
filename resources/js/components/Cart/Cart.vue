@@ -45,7 +45,7 @@ const handleDeleteOfficeItems = () => {
 <template>
     <Sheet v-model:open="cart.isCartOpen">
         <SheetContent class="max-h-[100vh] w-screen max-w-none [&>button:first-of-type]:hidden">
-            <SheetHeader>
+            <SheetHeader class="pb-4">
                 <SheetTitle class="flex justify-between gap-2">
                     <h2 class="text-lg font-semibold text-foreground">My bag</h2>
 
@@ -77,7 +77,7 @@ const handleDeleteOfficeItems = () => {
                 <SheetDescription class="text-left"> Manage your saved items here. Please note that items are not stored online. </SheetDescription>
             </SheetHeader>
 
-            <div class="flex h-[calc(100vh-170px)] flex-col gap-4 overflow-y-auto py-4">
+            <div class="flex h-[calc(100vh-210px)] flex-col gap-4 overflow-y-auto">
                 <!-- BMO -->
                 <div v-if="cart.items.BMO.length > 0" class="flex flex-col gap-2">
                     <div class="flex items-center gap-2">
@@ -105,13 +105,13 @@ const handleDeleteOfficeItems = () => {
                     <CartItem v-for="item in cart.items.ITRO" v-bind:key="item.id" :item="item" />
                 </div>
             </div>
-            <div class="flex flex-row justify-between">
+            <div class="flex flex-row justify-between pt-4">
                 <div class="flex items-center gap-2">
                     <Checkbox v-model="isAllSelected" />
                     <p class="text-sm leading-none">Select all</p>
                 </div>
                 <SheetClose as-child>
-                    <Button class="text-sm" @click="router.visit('/borrow/checkout')">
+                    <Button class="text-xs" @click="router.visit('/borrow/checkout')">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"

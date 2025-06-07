@@ -14,7 +14,7 @@ const { toggleCart } = useCart();
 
 <template>
     <header
-        class="flex h-16 shrink-0 items-center justify-between gap-2 border-b border-sidebar-border/70 px-6 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 md:px-4"
+        class="flex h-16 shrink-0 items-center justify-between gap-2 border-b border-sidebar-border/70 px-3 sm:px-6 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 md:px-4"
     >
         <div class="flex items-center gap-2">
             <SidebarTrigger class="-ml-1" />
@@ -24,7 +24,7 @@ const { toggleCart } = useCart();
         </div>
         <div class="flex items-center gap-2">
             <Button variant="ghost" @click="toggleCart">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-7">
                     <path
                         stroke-linecap="round"
                         stroke-linejoin="round"

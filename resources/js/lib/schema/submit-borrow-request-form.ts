@@ -44,11 +44,11 @@ const PurposeSchema = z
 
 // Define the main schema
 export const BorrowRequestSchema = z.object({
-    endorsed_by: z.string().email().optional(), // `endorsed_by` is not required
+    endorser: z.string().email().or(z.literal('')).optional(),
     purpose: PurposeSchema, // Validates against a list of purposes
-    user_defined_purpose: z.string().min(5, 'Purpose must be atleast 5 characters.').max(50, 'Purpose must be atmost 50 characters.'), // Validates as a non-empty string
+    specific_purpose: z.string().min(10, 'Purpose must be at least 10 characters.').max(250, 'Purpose must be atmost 250 characters.'), // Validates as a non-empty string
     items: z.array(SuperRefineItemSchema).min(1, 'At least one item is required'), // Validates as an array with at least one item
 });
 
 // Infer the types
-export type TBorrowRequestFormValues = z.infer<typeof BorrowRequestSchema>;
+export type TBorrowRequestSchema = z.infer<typeof BorrowRequestSchema>;

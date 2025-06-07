@@ -84,13 +84,13 @@ const handleSaveItemToCart = () => {
             <div class="flex w-full flex-col gap-5">
                 <!-- Details -->
                 <div class="flex flex-col gap-2">
-                    <h1 class="truncate text-xl font-bold">{{ selectedBorrowItem.item?.name }}</h1>
+                    <h1 class="truncate text-lg font-bold">{{ selectedBorrowItem.item?.name }}</h1>
                     <div class="flex gap-2">
                         <Badge :class="availableCountBadgeColor">{{ selectedBorrowItem.item?.available_count }} available</Badge>
                         <DepartmentBadge :department="selectedBorrowItem.item?.department ?? ''" />
                     </div>
 
-                    <p v-if="selectedBorrowItem.item?.description">
+                    <p v-if="selectedBorrowItem.item?.description" class="text-sm">
                         {{ selectedBorrowItem.item?.description }}
                     </p>
                     <p v-else class="italics">No description available</p>

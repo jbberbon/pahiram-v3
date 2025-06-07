@@ -13,11 +13,17 @@ const props = defineProps<BorrowItem>();
 </script>
 
 <template>
-    <Card class="flex h-[20rem] max-w-[15rem] flex-col hover:bg-gray-50 dark:hover:bg-gray-900">
+    <Card class="flex h-[18rem] max-w-[13rem] flex-col bg-neutral-100/50 hover:bg-neutral-200/40 dark:bg-neutral-900/20 dark:hover:bg-neutral-800/30">
         <!-- Image / Broken Img Icon -->
-        <div class="flex-[0_0_60%] rounded-t-lg bg-gray-200 dark:bg-gray-300">
+        <div class="flex-[0_0_60%] rounded-t-lg bg-white dark:bg-neutral-900">
             <div v-if="props.images.length === 0" class="flex h-full items-center justify-center">
-                <img src="/images/img-icon.svg" alt="image" class="mx-auto my-auto h-20 w-20" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="size-16">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                    />
+                </svg>
             </div>
         </div>
 
@@ -25,13 +31,13 @@ const props = defineProps<BorrowItem>();
         <div class="flex w-full flex-[0_0_40%] flex-col gap-2 p-3">
             <div class="">
                 <DepartmentBadge :department="props.department" />
-                <h2 class="w-full truncate font-semibold">{{ props.name }}</h2>
+                <h2 class="w-full truncate font-semibold text-sm">{{ props.name }}</h2>
             </div>
 
-            <div class="align-center flex justify-between">
+            <div class="align-center flex justify-between pt-1 pb-2">
                 <div class="flex flex-col justify-center">
                     <h5 class="text-xs leading-none">Available</h5>
-                    <h4 class="font-semibold leading-none">{{ props.available_count ?? 0 }} {{ props.available_count <= 1 ? 'item' : 'items' }}</h4>
+                    <h4 class="font-semibold leading-none text-sm">{{ props.available_count ?? 0 }} {{ props.available_count <= 1 ? 'item' : 'items' }}</h4>
                 </div>
 
                 <TooltipProvider>
@@ -48,7 +54,7 @@ const props = defineProps<BorrowItem>();
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
-                                    stroke-width="1.5"
+                                    stroke-width="2"
                                     stroke="currentColor"
                                     class="size-4"
                                 >
@@ -65,7 +71,7 @@ const props = defineProps<BorrowItem>();
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
-                                    stroke-width="1.5"
+                                    stroke-width="2"
                                     stroke="currentColor"
                                     class="size-4"
                                 >
@@ -79,8 +85,8 @@ const props = defineProps<BorrowItem>();
                         </TooltipTrigger>
 
                         <TooltipContent>
-                            <p v-if="props.is_required_supervisor_approval">Requires lending Supervisor approval</p>
-                            <p v-else>Not required lending Supervisor approval</p>
+                            <p v-if="props.is_required_supervisor_approval" class="text-black dark:text-white">Requires lending supervisor approval</p>
+                            <p v-else>Not required lending supervisor approval</p>
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>

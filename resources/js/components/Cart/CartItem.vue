@@ -5,13 +5,17 @@ import { Card } from '../ui/card';
 
 const props = defineProps<{
     item: BorrowItemReservation;
+    class?: string;
 }>();
 </script>
 
 <template>
-    <Card class="flex w-[100%] p-2 sm:p-4 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">
+    <Card
+        class="flex max-h-[150px] w-[100%] cursor-pointer p-2 sm:p-4 bg-neutral-100/40 hover:bg-neutral-200/40 dark:bg-neutral-900/20 dark:hover:bg-neutral-800/40"
+        :class="props.class"
+    >
         <!-- Image -->
-        <div class="aspect-square w-[25%] rounded outline outline-1 outline-gray-200 dark:outline-gray-600">
+        <div class="aspect-square w-[25%] rounded outline outline-1 outline-neutral-200 dark:outline-neutral-800 bg-white dark:bg-neutral-900 overflow-hidden">
             <span v-if="props.item.images.length === 0" class="flex h-full items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path
@@ -26,12 +30,47 @@ const props = defineProps<{
         </div>
 
         <!-- Details -->
-        <div class="flex w-[75%] flex-col px-4">
-            <h2 class="w-full truncate font-semibold">{{ props.item.reserved_count ?? 0 }}x {{ props.item.name }}</h2>
+        <div class="flex w-[75%] flex-col px-4 gap-2">
+            <h2 class="w-full truncate font-semibold text-sm">{{ props.item.reserved_count ?? 0 }}x {{ props.item.name }}</h2>
             <div class="flex flex-col gap-1">
-                <p class="text-sm leading-none">{{ convertIsoToHumanFormatShort(props.item.start_date) }}</p>
-
-                <p class="text-sm leading-none">{{ convertIsoToHumanFormatShort(props.item.end_date) }}</p>
+                <div class="flex items-center gap-2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="17"
+                        height="17"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-clock1-icon lucide-clock-1"
+                    >
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 14.5 8" />
+                    </svg>
+                    <p class="text-sm leading-none">{{ convertIsoToHumanFormatShort(props.item.start_date) }}</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="17"
+                        height="17"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-clock-alert-icon lucide-clock-alert"
+                    >
+                        <path d="M12 6v6l4 2" />
+                        <path d="M16 21.16a10 10 0 1 1 5-13.516" />
+                        <path d="M20 11.5v6" />
+                        <path d="M20 21.5h.01" />
+                    </svg>
+                    <p class="text-sm leading-none">{{ convertIsoToHumanFormatShort(props.item.end_date) }}</p>
+                </div>
             </div>
         </div>
     </Card>
